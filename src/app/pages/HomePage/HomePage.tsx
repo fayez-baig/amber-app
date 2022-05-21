@@ -15,6 +15,26 @@ const HomePage: FC = () => {
                 handleSubmit={(e) => {
                     e.preventDefault();
                 }}
+                defaultResult={[
+                    {
+                        title: 'Recent Searches',
+                        recentSearch: ['london', 'paris', 'berlin'],
+                    },
+                    {
+                        title: 'Popular cities',
+                        recentSearch: [
+                            'london',
+                            'paris',
+                            'berlin',
+                            'london',
+                            'paris',
+                            'berlin',
+                            'london',
+                            'paris',
+                            'berlin',
+                        ],
+                    },
+                ]}
                 setInputValue={setSearchTerm}
                 inputValue={searchTerm}
                 // @ts-ignore

@@ -9,9 +9,30 @@ const Results: FC<ResultsProps> = ({
     inputValue,
     isFetching,
     isError,
+    isFocused,
+    defaultResult,
 }): JSX.Element => {
     return (
         <ul className="md:max-w-[583px] lg:max-w-[682px] bg-light-mode dark:bg-dark-mode  dark:text-white">
+            {isFocused && !results.length && !isError && !isFetching && (
+                <li className="flex flex-col">
+                    {defaultResult.map((item) => (
+                        <ul key={item.title}>
+                            <li className="bg-[#fafafa] dark:bg-[#272a2d] py-[10px] px-[15px]">
+                                {item.title}
+                            </li>
+                            <div className="flex px-[15px] capitalize flex-wrap">
+                                {item.recentSearch.map((location) => (
+                                    <li className="mr-8 px-[15px] py-[10px]" key={location}>
+                                        {location}
+                                    </li>
+                                ))}
+                            </div>
+                        </ul>
+                    ))}
+                </li>
+            )}
+
             {!isFetching && !results.length && isError && (
                 <li className="py-[10px] pl-5 pr-5 flex items-center justify-center">
                     Something went wrong try again !!!

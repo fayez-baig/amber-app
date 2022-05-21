@@ -14,6 +14,7 @@ const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
     setInputValue,
     isFetching = false,
     isError = false,
+    defaultResult,
 }): JSX.Element => {
     const [isFocused, setIsFocused] = useState(false);
     const [selectedItem, setSelectedItem] = useState<Result>();
@@ -48,11 +49,13 @@ const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
             {isFocused && (
                 <Results
                     results={results || []}
+                    defaultResult={defaultResult}
                     handleClick={(item) => setSelectedItem(item)}
                     selectedItem={selectedItem}
                     inputValue={inputValue}
                     isFetching={isFetching}
                     isError={isError}
+                    isFocused={isFocused}
                 />
             )}
         </div>

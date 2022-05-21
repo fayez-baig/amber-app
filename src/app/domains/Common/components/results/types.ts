@@ -1,4 +1,4 @@
-import { Result } from 'app/domains/kernel/types';
+import { Result, DefaultResult } from 'app/domains/kernel/types';
 
 export interface ResultsProps {
     results: Result[];
@@ -7,4 +7,6 @@ export interface ResultsProps {
     inputValue: string;
     isFetching: boolean;
     isError: boolean;
+    isFocused: boolean;
+    defaultResult: DefaultResult[];
 }

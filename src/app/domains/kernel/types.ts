@@ -97,3 +97,8 @@ export interface SearchResults {
     data: Data;
     result: Result[];
 }
+
+export interface DefaultResult {
+    title: string;
+    recentSearch: string[];
+}

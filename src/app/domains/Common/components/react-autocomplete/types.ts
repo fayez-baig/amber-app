@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { Result } from 'app/domains/kernel/types';
+import { Result, DefaultResult } from 'app/domains/kernel/types';
 
 export interface ReactAutoCompleteProps {
     handleSubmit: (e: SyntheticEvent) => void;
@@ -8,4 +8,5 @@ export interface ReactAutoCompleteProps {
     setInputValue: (val: string) => void;
     isFetching: boolean;
     isError: boolean;
+    defaultResult: DefaultResult[];
 }
