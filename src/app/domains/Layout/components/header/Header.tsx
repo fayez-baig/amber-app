@@ -1,11 +1,9 @@
 import { useState, FC, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { HeaderProps } from './types';
-
 import { SvgIcon } from 'app/domains/Common/components/svg-icon';
 
-const Header: FC<HeaderProps> = ({ handleIsSidebarOpen }) => {
+const Header: FC = () => {
     const twTheme = localStorage.getItem('twTheme');
     const [mode, setMode] = useState(twTheme || 'light');
     const htmlElement = document.querySelector('html')!;
@@ -33,21 +31,11 @@ const Header: FC<HeaderProps> = ({ handleIsSidebarOpen }) => {
     return (
         <header className="z-40 py-2 shadow-md lg:shadow-none shadow-bottom bg-light-mode dark:bg-dark-mode">
             <div className="container flex items-center justify-between h-full px-3 mx-auto text-theme-color-light dark:text-theme-color-dark">
-                {/* <!-- Mobile hamburger --> */}
-                <button
-                    type="button"
-                    onClick={handleIsSidebarOpen}
-                    className="p-1 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-green-200"
-                    aria-label="Menu"
-                >
-                    <SvgIcon className="w-6 h-6" icon="MenuIcon" />
-                </button>
-
-                <div className="flex justify-center flex-1 h-10">
-                    <NavLink to="/home" className="block lg:hidden">
+                <div className="flex flex-1 h-10">
+                    <NavLink to="/home" className="block">
                         <SvgIcon
-                            className="w-24 h-10 cursor-pointer lg:ml-0"
-                            icon="NextGenDevLogo"
+                            className="w-16 h-10 text-red-500 cursor-pointer lg:ml-0"
+                            icon="AmberLogoIcon"
                         />
                     </NavLink>
                 </div>

@@ -1,8 +1,8 @@
-import { useState, FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import routes from 'app/router/routes';
 
-import { NavSidebar, Content, Header } from 'app/domains/Layout/components';
+import { Content, Header } from 'app/domains/Layout/components';
 import { NotFoundPage } from 'app/pages/NotFoundPage/async';
 
 const cls = {
@@ -11,8 +11,6 @@ const cls = {
 };
 
 const LayoutContainer: FC = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
     useEffect(() => {
         if (!localStorage.twTheme) return;
         document.querySelector('html')!.classList.add(localStorage.twTheme);
@@ -20,13 +18,8 @@ const LayoutContainer: FC = () => {
 
     return (
         <div className={cls.layout}>
-            <NavSidebar
-                isSidebarOpen={isSidebarOpen}
-                handleIsSidebarOpen={() => setIsSidebarOpen((prevFlag) => !prevFlag)}
-            />
-
             <div className={cls.mainWrapper}>
-                <Header handleIsSidebarOpen={() => setIsSidebarOpen((prevFlag) => !prevFlag)} />
+                <Header />
 
                 <Content>
                     <Routes>
