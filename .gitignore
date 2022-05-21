@@ -8,9 +8,6 @@ stats.json
 
 
 # firebase
-firebase.json
-.firebaserc
-/.firebase
 *.cache
 firebase-debug.log
 
