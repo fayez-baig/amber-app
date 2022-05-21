@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { ContentProps } from './types';
 
 const cls = {
-    main: 'h-full overflow-y-auto mt-3',
-    mainWrapper: 'container grid px-4 lg:px-4 mx-auto',
+    main: 'h-full overflow-y-auto',
+    mainWrapper: 'p-6 lg:p-0',
 };
 
 const Content: FC<ContentProps> = ({ children }) => (

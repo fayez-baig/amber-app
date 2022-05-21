@@ -8,5 +8,4 @@ export interface ButtonProps {
     type?: ButtonType;
     className?: string;
     icon?: ReactNode;
-    withIcon?: boolean;
 }

@@ -35,6 +35,6 @@
         "react/jsx-pascal-case": ["error"],
         "no-console": "error",
         "max-lines": ["error", { "max": 200, "skipBlankLines": true, "skipComments": true }],
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+        "@typescript-eslint/explicit-module-boundary-types": ["off"]
     }
 }
