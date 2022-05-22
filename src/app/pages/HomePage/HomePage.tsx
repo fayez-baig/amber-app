@@ -8,7 +8,7 @@ const HomePage: FC = () => {
     const { data, isFetching, isError } = useGetResults(debouncedSearchTerm);
 
     return (
-        <div className="bg-[url('/src/assets/images/bg-image.jpeg')] relative h-screen flex flex-col items-center">
+        <div className="relative bg-[url('/src/assets/images/bg-image.jpeg')] bg-no-repeat bg-cover flex flex-col items-center h-[calc(100vh-4rem)]">
             <div className="absolute p-2 top-36">
                 <div className="mb-10 text-center">
                     <h1 className="mb-1 text-white drop-shadow-[2px 2px 5px rgb(0 0 0 / 15%)] text-5xl lg:text-6xl">
