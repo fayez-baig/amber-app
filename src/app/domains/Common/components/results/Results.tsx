@@ -14,7 +14,7 @@ const Results: FC<ResultsProps> = ({
 }): JSX.Element => {
     return (
         <ul className="md:max-w-[583px] lg:max-w-[682px] bg-light-mode dark:bg-dark-mode  dark:text-white rounded-b-md">
-            {isFocused && !results.length && !isError && !isFetching && (
+            {isFocused && !results.length && !isError && !isFetching && !inputValue && (
                 <li className="flex flex-col">
                     {defaultResult.map((item) => (
                         <ul key={item.title}>
