@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({
             type={type}
             className={`${
                 icon ? 'justify-center group inline-flex items-center' : ''
-            }  bg-[#e8415d] text-white font-light focus:outline-none text-base
+            }  bg-[#e8415d] text-white font-light focus:outline-none text-base rounded-r-md
 			${className ?? ''} ${disabled ? 'opacity-20 cursor-not-allowed' : ''}
 			`}
             disabled={disabled}

@@ -13,7 +13,7 @@ const Input = forwardRef<
     const input = (
         <input
             {...inputProps}
-            className={`w-full p-5 pr-8 bg-white dark:dark-mode-text dark:bg-dark-mode focus:outline-none ${className}`}
+            className={`w-full p-5 pr-8 rounded-l-md bg-white dark:dark-mode-text dark:bg-dark-mode focus:outline-none ${className}`}
             ref={searchBoxRef}
         />
     );
