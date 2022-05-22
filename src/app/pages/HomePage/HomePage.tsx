@@ -12,9 +12,8 @@ const HomePage: FC = () => {
             <ReactAutoComplete
                 isFetching={isFetching}
                 isError={isError}
-                handleSubmit={(e) => {
-                    e.preventDefault();
-                }}
+                // eslint-disable-next-line no-console
+                handleSubmit={(result) => console.log(result)}
                 defaultResult={[
                     {
                         title: 'Recent Searches',
@@ -26,18 +25,17 @@ const HomePage: FC = () => {
                             'london',
                             'paris',
                             'berlin',
-                            'london',
-                            'paris',
-                            'berlin',
-                            'london',
-                            'paris',
-                            'berlin',
+                            'Germany',
+                            'New York',
+                            'France',
+                            'UAE',
+                            'USA',
+                            'Netherlands',
                         ],
                     },
                 ]}
                 setInputValue={setSearchTerm}
                 inputValue={searchTerm}
-                // @ts-ignore
                 results={data?.data?.data?.result?.slice(0, 5) || []}
             />
         </>

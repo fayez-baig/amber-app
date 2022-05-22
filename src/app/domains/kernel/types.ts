@@ -88,14 +88,15 @@ export interface MetaData {
 export interface Agg {}
 
 export interface Data {
+    data: Data;
     meta: MetaData;
     agg: Agg;
+    result?: Result[] | null;
 }
 
 export interface SearchResults {
     message: string;
     data: Data;
-    result: Result[];
 }
 
 export interface DefaultResult {

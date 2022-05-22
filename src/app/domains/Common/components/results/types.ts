@@ -9,4 +9,5 @@ export interface ResultsProps {
     isError: boolean;
     isFocused: boolean;
     defaultResult: DefaultResult[];
+    currentCursor: number;
 }

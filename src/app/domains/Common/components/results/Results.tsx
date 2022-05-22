@@ -5,12 +5,12 @@ import { ResultsProps } from './types';
 const Results: FC<ResultsProps> = ({
     results = [],
     handleClick,
-    selectedItem,
     inputValue,
     isFetching,
     isError,
     isFocused,
     defaultResult,
+    currentCursor,
 }): JSX.Element => {
     return (
         <ul className="md:max-w-[583px] lg:max-w-[682px] bg-light-mode dark:bg-dark-mode  dark:text-white">
@@ -18,12 +18,19 @@ const Results: FC<ResultsProps> = ({
                 <li className="flex flex-col">
                     {defaultResult.map((item) => (
                         <ul key={item.title}>
-                            <li className="bg-[#fafafa] dark:bg-[#272a2d] py-[10px] px-[15px]">
+                            <li
+                                aria-label={item.title}
+                                className="bg-[#fafafa] dark:bg-[#272a2d] py-[10px] px-[15px]"
+                            >
                                 {item.title}
                             </li>
                             <div className="flex px-[15px] capitalize flex-wrap">
                                 {item.recentSearch.map((location) => (
-                                    <li className="mr-8 px-[15px] py-[10px]" key={location}>
+                                    <li
+                                        className={`mr-8 px-[15px] py-[10px]`}
+                                        key={location}
+                                        aria-label={location}
+                                    >
                                         {location}
                                     </li>
                                 ))}
@@ -53,9 +60,10 @@ const Results: FC<ResultsProps> = ({
             {results?.map((result, index) => (
                 <div key={`result-${result.id}`}>
                     <li
+                        aria-label={result.name}
                         className={`${
-                            selectedItem?.id === result.id ? 'border-blue-500' : 'border-none'
-                        } py-[10px] pl-5 pr-5 flex items-center`}
+                            currentCursor === index && 'border-2 border-sky-500'
+                        } py-[10px] pl-5 pr-5 flex items-center `}
                         onMouseDown={() => handleClick(result)}
                         onClick={() => handleClick(result)}
                     >

@@ -1,6 +1,6 @@
-import { useRef, useEffect, MutableRefObject } from 'react';
+import { useRef, useEffect, RefObject } from 'react';
 
-const useOutSideClick = (callback: () => void): MutableRefObject<HTMLInputElement | null> => {
+const useOutSideClick = (callback: () => void): RefObject<HTMLInputElement | null> => {
     const callbackRef = useRef<() => void>(callback); // initialize mutable ref, which stores callback
     const innerRef = useRef<HTMLInputElement | null>(null); // returned to client, who marks "border" element
 

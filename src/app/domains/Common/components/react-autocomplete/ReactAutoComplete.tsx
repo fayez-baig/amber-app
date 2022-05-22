@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
-import { FC, useState } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import { Input, Button } from 'app/domains/Common/components/ui';
 import { SvgIcon } from 'app/domains/Common/components/svg-icon';
 import { ReactAutoCompleteProps } from './types';
 import Results from 'app/domains/Common/components/results/Results';
 import { Result } from 'app/domains/kernel/types';
 import useOutSideClick from 'app/hooks/app-hooks/useOutsideClick';
+import { useKeyPress } from 'app/hooks/app-hooks/useKeyPress';
 
 const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
     handleSubmit,
@@ -18,12 +18,41 @@ const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
 }): JSX.Element => {
     const [isFocused, setIsFocused] = useState(false);
     const [selectedItem, setSelectedItem] = useState<Result>();
+    const [cursor, setCursor] = useState<number>(-1);
     const inputRef = useOutSideClick(() => setIsFocused(false));
+    const searchBoxRef = useRef<HTMLInputElement>(null);
+    const ref = useRef({ inputRef, searchBoxRef });
+    const downPress = useKeyPress('ArrowDown', searchBoxRef);
+    const upPress = useKeyPress('ArrowUp', searchBoxRef);
+    const enterPress = useKeyPress('Enter', searchBoxRef);
 
-    console.log(inputValue, 'searchterm');
+    useEffect(() => {
+        if (results.length && downPress) {
+            setCursor((prevState) => (prevState < results.length - 1 ? prevState + 1 : prevState));
+        }
+    }, [downPress]);
+    useEffect(() => {
+        if (results.length && upPress) {
+            setCursor((prevState) => (prevState > 0 ? prevState - 1 : prevState));
+        }
+    }, [upPress]);
+    useEffect(() => {
+        if (results.length && enterPress) {
+            setSelectedItem(results[cursor]);
+        }
+    }, [cursor, enterPress]);
+
     return (
         <div className="container mx-auto max-w-[820px]">
-            <form className="flex flex-col md:flex-row" onSubmit={(e) => e.preventDefault()}>
+            <form
+                className="flex flex-col md:flex-row"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    if (selectedItem) {
+                        handleSubmit(selectedItem);
+                    }
+                }}
+            >
                 <Input
                     type="text"
                     placeholder="Search by University or City"
@@ -33,8 +62,12 @@ const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
                     value={inputValue}
                     autoFocus={isFocused}
                     onFocus={() => setIsFocused(true)}
-                    onChange={(e) => setInputValue?.(e.target.value)}
-                    ref={inputRef}
+                    onChange={(e) => {
+                        setInputValue?.(e.target.value);
+                        setCursor(-1);
+                    }}
+                    // @ts-ignore
+                    ref={ref}
                     onIconClick={() => setInputValue('')}
                 />
                 <Button
@@ -56,6 +89,7 @@ const ReactAutoComplete: FC<ReactAutoCompleteProps> = ({
                     isFetching={isFetching}
                     isError={isError}
                     isFocused={isFocused}
+                    currentCursor={cursor}
                 />
             )}
         </div>

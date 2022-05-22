@@ -1,4 +1,4 @@
-import { ReactNode, InputHTMLAttributes, ChangeEvent, RefObject } from 'react';
+import { ReactNode, InputHTMLAttributes, ChangeEvent } from 'react';
 
 type InputType = 'text' | 'email' | 'password';
 
@@ -14,5 +14,4 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     className?: string;
     icon: ReactNode;
     onIconClick?: () => void;
-    ref?: RefObject<HTMLInputElement>;
 }
